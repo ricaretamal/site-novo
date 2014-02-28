@@ -1,0 +1,37 @@
+@charset "utf-8";
+/**
+ * Tendu
+ * Author: Tom Bigelajzen - http://tombigel.com
+ */
+
+/* Incremental CSS overrides for IE (all versions)
+ * Notes:
+ * I added this file mainly to separate the "break-word" decleration
+ * from the main CSS in order to keep it valid.
+ * "break-word" causes IE to break long text with no white-spaces,
+ * otherwise, because of it's non-standard block sizing behavior it
+ * breakes the layout - especially when RTL is involved.
+ * It's actually a very useful decleration.
+ */
+body{word-wrap: break-word;}
+
+#block-menu-primary-links ul li:hover ul,
+#block-menu-secondary-links ul li:hover ul {visibility:visible;z-index: -99; background-color: transparent;}
+
+#block-menu-primary-links ul li ul li,
+#block-menu-secondary-links ul li ul li {position: relative;top: 20px; left:-10px;padding: 3px;padding-left: 5px;border-bottom: 1px solid #a00;width: 170px;z-index:1}
+
+#block-views-ultimo_especial-block_1,
+#block-views-ultimo_especial-block_1-block_1 { width:250px }
+#block-views-ultimo_especial-block_1 .views-field-field-capa-fid,
+#block-views-ultimo_especial-block_1-block_1 .views-field-field-capa-fid { width:240px; }
+
+#block-views-ultima_revista-block_1-block_1,
+#block-views-ultimo_jornal-block_1-block_1 { float:left; width:130px }
+
+#block-views-letra_viva-block_1 { background-color:#c00; width: 250px; float:none }
+
+#block-views-ultimo_artigo-block_1 { width:250px }
+
+.not-front #content-area { position:relative; top:-600px }
+.page-multimidia #content-bottom { position:relative; top:-750px }

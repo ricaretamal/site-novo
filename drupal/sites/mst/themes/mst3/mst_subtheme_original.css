@@ -1,0 +1,207 @@
+@charset "utf-8";
+/*$Id: style_subtheme.css,v 1.1.2.1.2.19 2009/01/26 23:49:05 tombigel Exp $*/
+/**
+ * Tendu Default: A sub-theme of Tendu - A CSS theme for developers
+ * Author: Tom Bigelajzen (http://drupal.org/user/173787) - http://tombigel.com
+ */
+body{background:#f9f9f9; font-family:Arial,Verdana,Helvetica,sans-serif; font-size:105%;}
+#page{line-height: 1.333em; padding-top: 0; margin-top: 0;}
+
+/*Basic Typography*/
+
+h1{color:#3f3f3f;}
+
+/*Tables*/
+/*Lists*/
+ul li{margin-left:1.5em;list-style:none;line-height:1.2em;padding:3px}/*LTR*/
+.sidebar-region .item-list ul li {float: left;}
+
+/* Form Elements  */
+fieldset{padding:.5em .8em;margin:0 0 1em;border:1px solid #f9f9f9;background:#f9f9f9;}
+
+/* Links */
+a{color:#a00000;text-decoration:none;}
+a:visited{color:#a00000;}
+a.active:visited{color:#a00000;}
+.links a{font-weight:bold }
+
+/* Header and Navagation */
+.front #content {background-color: transparent;}
+#header{width:100%;} 
+#header-content {background-color: #da251c;}
+#header-blocks{padding:0px;font-size:1.07em; width:980px; background: #da251c none repeat scroll 0 0;}/*LTR*/
+#header-blocks a{color: #fff }
+#header a{color: #fff;}
+#header ul.menu li a:visited,
+#header ul.menu li a.active:visited {text-decoration:none;color:#a00000;}
+
+#header #block-menu-menu-menu-secundario ul.menu li a:visited, #header ul.menu li a.active:visited  { text-decoration: none; color: #fff; }
+
+
+/*Theme Site details*/
+#site-details{background: url('/sites/default/files/images/cabecalho.jpg');width: 100%; height: 170px;float:left;padding:0;width:100%;overflow:hidden}/*LTR*/
+#site-logo{float:left;padding: 0}/*LTR*/ /*IE6 commented*/
+/*Theme Language Switcher*/
+/*Theme Search Box*/
+/*Hide label but keep it in the document for accessibility*/
+/*Theme main navigation*/
+#main-nav{background: #b0b0b0; margin-top: 0px; border-top: 3px solid #f9f9f9; }
+#block-menu-menu-menu-secundario a,
+#block-menu-menu-menu-secundario ul.menu li a.active,
+#block-menu-menu-menu-secundario ul.menu li a.active:visited,
+#main-nav a, 
+#main-nav ul.menu li a.active, 
+#main-nav ul.menu li a.active:visited {color: #fff; font-weight: normal;}
+
+/* Desenvolvimento do menu 2 */
+#block-menu-menu-menu-secundario {height: 28px; padding: 0px; color: #fff; }
+#block-menu-menu-menu-secundario li{float: right}
+
+/* Page info */
+.breadcrumb{padding:0;}
+#content-title{color:#000;padding:12px;background:#fff;margin-bottom:0px;margin-top:0;}
+#content-info{margin-bottom:0; background: #fff}
+
+/* Blocks in sidebars */
+.sidebar-region .block {background:#3f3f3f; color:#fff; padding: 10px}
+.sidebar-region .block .views-field-field-capa-fid {text-align: center; }
+.sidebar-region .block a { color:#ccc }
+#footer h2,
+.sidebar-region .block h2 {font-weight:normal; border-top: 1px solid #ccc;}
+.sidebar-region .block h2.title {border: 0}
+
+/* Sidebar width - Margem para coluna com largura ok */
+.with-sidebar-second #content {margin-right: 290px; padding:0 0 0.5em; }
+#sidebar-second {width: 280px;}
+
+/* Blocks nodes and views in content areas. */
+.extra-region .block, .content-region div.block, .content-region .node, .content-region .node-form, .content-region .view, .content-region .profile, .content-region .node-type-list, .page-admin #default-content { background:#fff;}
+
+ #content  { font-size:115%;line-height:1.333em }
+
+
+/* Remove redundent styling from blocks in blocks, nodes and views */
+/* Forums */
+
+/* Tabs */
+div.tabs{background:#fff;color:#333;border:none;padding:.5em 1em;margin-bottom:10px}
+ul.secondary li a:visited {background:none;border:none;padding:0 .6em;color:#a00000}
+ul.secondary li.active a:visited{text-decoration:none;font-weight:bold;color:#a00000;background:none;border:none;}
+
+/* Parte para desenvolvimento */
+
+/* Navegacao de galeria */
+#block-gallery_navigation-0 {float: left; display: table; background-color:#eef2fe; height: 100%;margin: 30px 0 0 10px; }
+.block-gallery_navigation h2 { color: #333 !important}
+#block-gallery_navigation-0,
+#block-gallery_navigation-0 .images,
+#block-gallery_navigation-0 .content, 
+#block-gallery_navigation-0 .content a , 
+#block-gallery_navigation-0 .nav-image-prev,
+#block-gallery_navigation-0 .nav-image-next,
+#block-gallery_navigation-0 .images a { background-color:#eef2fe; !important ; color:#333; text-align:center }
+#block-gallery_navigation-0 .content div { float:left; padding: 2px; vertical-align: center; }
+#block-gallery_navigation-0 .nav-middle { margin-top: 39px; background-color: #eef2fe; border-bottom:2px solid #333}
+#block-gallery_navigation-0 .nav-image-prev,
+#block-gallery_navigation-0 .nav-image-next { width: 90px }
+#block-gallery_navigation-0 .content img { border:3px solid black }
+.page-image .images li { margin:auto; padding: 5px; }
+.node-type-image div.content { text-align:center  }
+.node-type-image div.content p { text-align:justify  }
+
+
+/* jornais */
+#block-views-ultima_revista-block_1 { float:left; width: 120px }
+
+/* caixa destaque */
+#block-views-taxonomia_destaque-block_1{background-color: #e5ebfe; padding:0; }
+#block-views-taxonomia_destaque-block_1 div.field-content {padding-top: 10px;}
+#block-views-taxonomia_destaque-block_1 div {padding: 0; margin: 0; border: 0; background-color: transparent;}
+#block-views-taxonomia_destaque-block_1 div a { color: #333;}
+#block-views-taxonomia_destaque-block_1 div a h3 {font-weight: normal; color: #333;}
+#block-views-taxonomia_destaque-block_1 div a h3 {font-size: 1.2em; font-weight: normal;}
+#block-views-taxonomia_destaque-block_1 table {margin: 0; border-collapse: inherit ;}
+#block-views-taxonomia_destaque-block_1 td {border: 0px; margin: 0px; width: 50%}
+
+/* Trocar view de list para grid */
+#block-views-frontpage_sticky-block_1 {background-color: #fff8d1;} 
+#block-views-frontpage_sticky-block_1 div, 
+#block-views-frontpage_sticky-block_1 .content-region {padding:0; margin: 0;background-color: #fff8d1;}
+
+#block-views-taxonomia_destaque-block_1 div.views-field-timestamp, 
+.view h3 { font-size: 0.9em ; border-top-width: 1px; border-top-style: solid; border-top-color: #cccccc; font-weight: normal;}
+
+.field-content h3 { }
+
+.item-list ul li{list-style:none; padding:0}
+
+#block-views-frontpage_sticky-block_1 a, .view-frontpage a {font-size: 1.5em;
+font-weight: bold; line-height: 1.333em}
+
+#block-views-frontpage_sticky-block_1 ul li a,
+.view-id-frontpage ul li a {font-size: 1.5em; line-height:1.333em;}
+.view-id-taxonomia_destaque ul li {font-size:1.333em;line-height:1.333em;}
+.view-id-ulltimas_noticias a {}
+
+.view-content p, .content p { padding-bottom: 0.5em; padding-left: 8px }
+
+span, p, .content span { padding-bottom: 1em }
+
+#block-views-ulltimas_noticias-block_1 {padding: 0px;}
+#block-views-ulltimas_noticias-block_1 h2 {padding: 10px 0 0 10px ;font-size: 1.30em; font-weight:bold;}
+
+/* Footer */
+#footer .item-list ul li {float: left;}
+#footer {color: #fcfcfc; background: #3f3f3f; height: 170px; text-align: left;}
+#footer div{text-align: left;} 
+.footer-spacer{padding-bottom:200px;}
+
+/* Tweak Admin panel */
+
+/*Add scroll to hiddent tables in narrow pages*/
+
+/* Tweak Views Admin panel */
+
+/*Legacy */
+/* 3 destaques da capa */
+#block-views-frontpage_sticky-block_1 ul {padding: 0;}
+#block-views-frontpage_sticky-block_1 .views-row-even,
+#default-content .view-frontpage .views-row-even{clear: left; padding: 5px 5px 5px 0px;}
+#block-views-frontpage_sticky-block_1 .views-row-odd,
+#default-content .view-frontpage .views-row-odd {clear: right; padding: 5px 5px 5px 0px; }
+
+.views-field-field-foto-fid img,
+.view-frontpage-sticky img,
+#foto-1 img { float:left; padding: 5px 5px 5px 0 }
+#foto-2 img { float:right; padding: 5px 0 5px 5px }
+#foto-3 img { float:left; padding: 5px 5px 5px 0 }
+
+#title-2 { text-align: right }
+#chamada-2 p { text-align: right }
+
+
+/* Amigos */ 
+/*
+.view-listagem-amigos .views-row,
+.view-listagem-amigos .views-row,
+.view-listagem-amigos .views-row { float: left; }
+/*
+.view-listagem-amigos .views-row-odd .field-content img, 
+.view-listagem-amigos .views-row-odd img, .field-item img,
+.view-listagem-amigos .views-row-even .field-content img, 
+.view-listagem-amigos .views-row-even img, .field-item img { padding:0px; padding-left:2px; padding-right:2px }
+.imagecache-bandeira { } 
+
+/*
+.field-field-mes div {float:left; padding:2px; margin:0px; margin-right:4px }
+.field-field-ano { margin:2px; padding:2px }
+*/
+
+span.date { margin: 0 0 10px 0; }
+
+.imagefield-field_foto,
+.imagefield-field_capa {margin:10px; float: left;display: table;}
+
+.view-galeria-especiais .views-view-grid td,
+.view-galeria-jornais .views-view-grid td,
+.view-galeria-revistas .views-view-grid td { width:133px; padding:20px }

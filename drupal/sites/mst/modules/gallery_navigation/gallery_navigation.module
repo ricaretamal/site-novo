@@ -1,0 +1,134 @@
+<?php
+/**
+* Display help and module information
+* @param path which path of the site we're displaying help
+* @param arg array that holds the current path as would be returned from arg() function
+* @return help text for the path
+*/
+function gallery_navigation_help($path, $arg) {
+  $output = '';
+  switch ($path) {
+    case "admin/help#gallery_navigation":
+      $output = '<p>'.  t("Block for gallery navigation.") .'</p>';
+      break;
+  }
+  return $output;
+} // function gallery_navigation_help
+
+
+/**
+* Valid permissions for this module
+* @return array An array of valid permissions for the gallery_navigation module
+*/
+
+function gallery_navigation_perm() {
+    //  return array('access gallery navigation');
+} // function gallery_navigation_perm()
+
+
+/**
+* Generate HTML for the gallery_navigation block
+* @param op the operation from the URL
+* @param delta offset
+* @returns block HTML
+*/
+function gallery_navigation_block($op='list', $delta=0) {
+  // listing of blocks, such as on the admin/block page
+  if ($op == "list") {
+    $block[0]["info"] = t('Gallery navigation');
+    return $block;
+  } else if ($op == 'view') {
+    $block_content = _parse_gallery_navigation();
+    
+    $block['subject'] = t('Navigation for image gallery');
+    $block['content'] = $block_content;
+    return $block;
+  }
+} // end gallery_navigation_block
+
+function _parse_gallery_navigation() {
+    $nid = arg(1);
+    $res = db_query("SELECT n.type,tn.tid FROM {node} n, {term_node} tn WHERE tn.nid = n.nid AND n.nid = %d", $nid);
+    $node_data = db_fetch_array($res);
+    
+    if ($node_data['type'] == 'image') {
+	
+	// TODO: configuravel
+	$imageSize = "mini";
+
+        switch (variable_get('image_gallery_sort_order', IMAGE_GALLERY_SORT_CREATE_DESC)) {
+          case IMAGE_GALLERY_SORT_CREATE_DESC:
+            $queryOrder = 'ORDER BY n.sticky DESC, n.created DESC';
+            break;
+
+          case IMAGE_GALLERY_SORT_CREATE_ASC:
+            $queryOrder = 'ORDER BY n.sticky DESC, n.created ASC';
+            break;
+
+          case IMAGE_GALLERY_SORT_FILENAME:
+            $queryOrder = "ORDER BY n.sticky DESC, f.filepath";
+            break;
+
+          case IMAGE_GALLERY_SORT_TITLE:
+            $queryOrder = 'ORDER BY n.sticky DESC, n.title ASC';
+            break;
+        }
+	
+	$resultImage = db_query(db_rewrite_sql("SELECT DISTINCT tn.nid, f.filepath, tn.nid FROM {term_node} tn, {image} i, {files} f, {node} n WHERE n.nid = tn.nid AND tn.nid = i.nid AND f.fid = i.fid AND i.image_size = '%s' AND tn.tid = '%d' $queryOrder"), $imageSize, $node_data['tid']);
+
+	$arrImages = array();
+	while($imageThumb = db_fetch_array($resultImage)) {
+	    $arrImages[] = $imageThumb;
+	}
+	
+	// monta o html
+	if (!empty($arrImages) && count($arrImages) > 1) {
+	    
+	    $thumbNavBegin = "<div class='nav-middle'><ul class='images'>\n";
+	    $thumbNavMiddle = "";
+	    $thumbNavEnd = "</ul></div>";
+	    
+	    for ($x = 0; $x < count($arrImages); $x++) {
+		$imageItem = $arrImages[$x];
+		$style = "";
+		// se for o atual, faz prev/next
+		if ($imageItem['nid'] == $nid) {
+		    $style = " font-weight: bold; font-size:1.3em";
+		    
+		    // soh faz previous a partir do segundo
+		    if ($x > 0) {
+			$urlPrev = url($arrImages[$x - 1]['filepath']);
+			$prev = url("node/" . $arrImages[$x - 1]['nid']);
+		    }
+		    
+		    // soh faz next ate o penultimo
+		    if (($x + 1) < count($arrImages)) {
+			$urlNext = url($arrImages[$x + 1]['filepath']);
+			$next = url("node/" . $arrImages[$x + 1]['nid']);
+		    }
+		    
+		    if ($prev) {
+			$prevStr = "<div class='nav-image-prev'><a href='$prev'><img border='0' src='$urlPrev'><p> << " . t('Anterior') . "</p></a></div>\n";
+		    } else {
+			$prevStr = "<div class='nav-image-prev'>&nbsp;</div>";
+		    }
+		    
+		    if ($next) {
+			$nextStr .= "<div class='nav-image-next' <a href='$next'><img border='0' src='$urlNext'><p> Próxima >> </p></a></div>";			
+		    } else {
+			$nextStr .= "<div class='nav-image-next'>&nbsp;</div>";
+		    }
+		}
+		$urlNode = url("node/" . $imageItem['nid']);
+		
+		$iX = $x + 1;
+		$thumbNavMiddle .= "<li style='display:inline;$style'><a href='$urlNode'> $iX </a></li>\n";
+		next($arrImages);
+	    }
+	    
+	    $content = $prevStr . $thumbNavBegin . $thumbNavMiddle . $thumbNavEnd . $nextStr;
+	}
+    }
+    return $content;
+}
+

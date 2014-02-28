@@ -1,0 +1,431 @@
+@charset "utf-8";
+/**
+ * @file
+ * Tendu Drupal - A CSS Theme For Developers
+ * Author: Tom Bigelajzen - http://tombigel.com
+ * 
+ * Please follow the instructions in "Page Layout" section.
+ * Lines that end with LTR comments are refferenced in styl-rtl.css according to Drupal Coding Guidelines
+ * Lines that end with IE or IE6 comments are reeferenced in ie.css or ie6.css
+ */
+
+/* Basic CSS Reset */
+body, div,  dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p, a,
+pre, code, form, fieldset, legend, input, textarea, p, blockquote, table, th, td {margin:0;padding:0;}
+img, fieldset, legend, table, tr, td, th {border:none;}
+ol, ul, li {list-style-type:none;}
+table, td{vertical-align:top;text-align:left;}/*LTR*/
+th{vertical-align:middle;text-align:left;}/*LTR*/
+fieldset{padding:0;margin:0;}
+
+/* Drupal CSS Defaults reset */
+.profile,
+.node-form .standard{clear:none;}
+ul.menu{padding:0 0 0 1em;}/*LTR*/
+ul.menu li{margin:0 0 0 .5em;}/*LTR*/
+.item-list ul li{list-style-image:none;list-style-type:none;padding:0;margin:0;}
+li.leaf{list-style-image:none;list-style-type:none;}
+
+/**
+ * Page layout:
+ *****************************************************
+ * In this section the only changes you need to do are:
+ * 1. Comment/Uncomment the lines that relate to full viewport height
+ * 2. Comment/Uncomment the lines that relate to fixed width or fluid width layout
+ * 3. Set the widths of the page, the content area and the sidebars.
+ *
+ * For readability reasons some selectors has multiple style declerations.
+ * Keep this section clean, add your design CSS in the next "Page Design" section.
+ *
+ * Note:
+ * In many places I'm Using the fact IE6 ignores the !important decleration if the same
+ * attribute appears twice for the same selector to avoid using non-standard hacks or the ie6.css file.
+ */
+
+/**
+ * Full viewport height
+ * Notes:
+ * Remove these lines if you don't need the hight of the #page element to span 100% of the viewport height.
+ */
+html, body{height:100%;}
+#page{display: block;height:auto !important;height:100%;min-height:100%;position:relative; }
+
+/** 
+ * Stick footer to bottom of the page
+ * Notes:
+ * - Requires the above "Full viewport height", otherwise it can be removed.
+ * - #footer height must be an absolute value for this to work right.
+ *   The height of #footer and padding-bottom of #main must be set concordingly,
+ *   so the footer will not overlay the content of the page.   
+ * - Set the padding and the height according to your design.
+ * - In some edge cases on some browsers the footer will refuse to stick to the bottom,
+ *   one solution that works for me is to move the footer <div> in page.tpl.php
+ *   to be right under the header instead of the end of the page.
+ */
+#main{padding-bottom:15px;}
+#footer{width:100%;bottom:0;height:30px;}
+
+/**
+ * Fonts
+ * Notes:
+ * - I'm using relative font sizes for 2 reasons:
+ *   1. Accessibility - So users of IE6 will be able to resize fonts.
+ *   2. Font sizes are easier to track this way, you change the size of a font in a parent element
+ *      and all the font sizes in child elements change with it.
+ * - Note that "line-height" unlike "font-size" is relative to the current element and not to a global line height.
+ * - Basic font size 12px, set as .75em of browsers default 16px size.
+ * - For 14px font size change .75em to .85em, note that then the following numbers do not apply.
+ * - Font sizes (when base size is .75em, calculated as desired font size devided by 12):
+ *	 10px = .83em
+ *	 11px = .916em
+ *	 12px = 1em
+ *	 13px = 1.083em
+ *	 14px = 1.166em
+ *	 16px = 1.333em
+ *	 18px = 1.5em
+ *	 20px = 1.666em
+ *   etc...
+ */
+body{font-family:Arial, Verdana, Helvetica, sans-serif;font-size:115%;}/*LTR*/ /*IE*/
+#page{font-size:.75em;line-height:1.333em;}
+
+/* Main Layout: */
+
+/**
+ * Page width: Fixed width layout.
+ * For fixed width Layout comment the next section and uncomment the following line
+ 
+#page{width:830px;margin:0 auto;position:relative;} 
+*/ 
+
+
+/**
+ * Page width: Fluid width layout
+ * Notes:
+ * - As a thumb rule I don't deal with non-standard IE hacks so this design degrades to a fixed width in IE6
+ * - To have a full page width in IE6, use the following structure:
+ *
+ *   #page{min-width:760px;max-width:1220px;height:1%;margin:0 auto;}
+ *
+ * - For fluid width in IE6 you can also use the "width:expression()" hack. But you really shouldn't.
+*/
+
+#page{min-width:830px;max-width:980px;width: !important 980px;margin:0 auto;}/*LTR*/
+
+ 
+
+/**
+ * Sidebars widths
+ * NOTES:
+ * - When using this method, the design "suffers" from the 3 pixel gap in IE6, 
+ *   meaning that in IE6 there will be an extra margin of 3 pixels from both
+ *   sides of #content.
+ *   There are several ways to deal with it, depending on your design.
+ *   If you use padding-left/right like here, use a padding smaller in 3px for IE6
+ *   
+ *   TODO: find a consistent way to do it without the padding.  
+ */
+#sidebar-left{float:left;width:170px;}/*LTR*/ 
+#sidebar-right{float:right;width:280px;}/*LTR*/ 
+
+
+.with-sidebar-left #content{margin-left:180px;padding-left:20px}/*LTR*/
+.with-sidebar-right #content{margin-right:320px;padding:20px}/*LTR*/
+
+/* Set hasLayout in IE and clear floats for all main areas
+ * Notes:
+ * "overflow:hidden" is more consistent then "clear:both" in clearing floats without breaking the design.
+ * But it breaks dropdown menus like "nice-menus" etc.
+ * I use "overflow:hidden" where in most cases no dropdowns are present and other methods elsewhere.
+ */
+#content-header,
+#content-top,
+#content-area,
+#content-bottom,
+#main,
+#footer, 
+#header_content{width:100%; height: 100%; padding: 0px; overflow: visible}
+
+#content {display: table; height: 100%; background-color: #f9f9f9;padding: 15px;}
+
+#content h2 {color: #3f3f3f;} 
+
+/* #content-area {background-color: #fff} */
+
+.front #content {background-color: transparent;}
+
+#header{background: url('/sites/default/files/images/cabecalho.jpg');width:100%; } 
+
+#main-nav{width:100%;}
+
+
+/* End of Layout section
+ *****************************************************
+ */
+
+/* Page Design
+ *****************************************************
+ * This section is a basic theme that uses Tendu's layout.
+ * Don't consider it as obligatory, just a refference.
+ */
+
+/* General Tags */
+body{color:#535d66;background: #e7e7de url('/sites/mst/themes/mst2/node-full.png')}/*LTR*/ /*IE*/
+h1{font-size:1.833em;line-height:1.333em;font-weight:bold;}
+h2{font-size:1.5em;line-height:1.333em;font-weight:bold;}
+h3{font-size:1.333em;line-height:1.333em;font-weight:bold;}
+h4{font-size:1em;line-height:1.333em;font-weight:bold;}
+span,
+p{padding-bottom:1em;}
+td{padding:.2em .5em;}
+dt{font-style:italic;}
+dd{padding:.5em;}
+ul.bullets{padding:.5em 1em;}
+ul.bullets li{margin-left:1.5em;list-style:disc;line-height:1.5em;}
+tr.odd, tr.even{border-bottom:none;}
+tr.even{background:#f8f8f8;}
+
+/* Form Elements  */
+input, select, textarea{font-family:Arial, Helvetica, sans-serif;font-weight:normal;line-height:1em;font-size:1em;}
+textarea{line-height:1.2em;}
+button{font-family:Arial, Helvetica, sans-serif;font-weight:bold;line-height:1em;font-size:13px}
+button{cursor:pointer;}
+
+/* Links */
+a{color:#a00000;text-decoration:none;}
+a:visited{}
+a:hover, a:focus{text-decoration:underline;}
+
+/* Header and Navigation */
+#header{height: 260px;}
+  #header-blocks{position: absolute; top: 230px; left: 0;width: 100%; clear:both;font-size:.916em;color:#444;}/*LTR*/
+  #header-blocks a{color:#444;font-weight:bold;}
+  #header h2{display: none}
+  #header img{float:left;}/*LTR*/ 
+  #site-details{float:left;padding:5px;}/*LTR*/
+  #site-logo{overflow: hidden;padding:0px;}/*LTR*/ /*IE6 commented*/
+  #site-name{}
+  #site-slogan{font-size:1.5em;line-height:1.333em;}
+  #main-nav{margin: 0px; padding: 0px;}
+  #main-nav h2{display:none;}
+  #main-nav a{color:#fff;}
+  #main-nav ul.menu{overflow:hidden;}
+  #main-nav li{float:left;padding:2px;margin-left:1em;} 
+/* block-views */
+
+/* revista e jornal */
+
+#block-views-ultima_revista-block_1 {float: left; width: 110px} 
+#block-views-ultimo_jornal-block_1 {margin-left: 130px; width:110px;}
+
+/* destaque e ultimas noticias */
+#block-views-taxonomia_destaque-block_1 {clear: left; background-color: #3f3f3f;}
+#block-views-taxonomia_destaque-block_1 li {float: left; width: 48%;}
+
+#block-views-ulltimas_noticias-block_1 {clear: left; background-color: #fcfcfc;}
+
+
+#block-gallery_navigation-0 {float: left; display: table; background-color:#3f3f3f; height: 100%;margin: 30px 0 0 10px;}
+
+#block-views-ultimo_audio-block_1,
+#block-views-taxonomia_destaque-block_1,
+#sidebar-left,
+#sidebar-right {display: table; background-color:#3f3f3f; height: 100%;}
+
+#block-gallery_navigation-0 .block,
+#block-views-ultimo_audio-block_1 .block,
+#block-views-taxonomia_destaque-block_1 .block,
+#sidebar-left .block,
+#sidebar-right .block {padding: 10px; margin-bottom: 10px; }
+
+#block-gallery_navigation-0 li,
+#block-views-ultimo_audio-block_1 .block li,
+#block-views-taxonomia_destaque-block_1 .block li,
+#sidebar-left  .block li,
+#sidebar-right .block li{padding:3px 0;}
+
+/* Talvez podemos usar uma cor mais destacada*/
+#block-image-0,
+#block-block-5,
+#block-audio-2,
+#block-views-ultimo_audio-block_1 a,
+#block-views-ultimo_audio-block_1 div,
+#block-views-ultimo_audio-block_1,
+#block-views-taxonomia_destaque-block_1 a,
+#block-views-taxonomia_destaque-block_1 div,
+#block-views-taxonomia_destaque-block_1 ul,
+#block-views-taxonomia_destaque-block_1 li,
+#block-gallery_navigation-0 a,
+#block-gallery_navigation-0 div,
+#block-gallery_navigation-0 ul,
+#block-gallery_navigation-0 li,
+#sidebar-left a,
+#sidebar-right a,
+#sidebar-left div,
+#sidebar-right div {color: #ccc; padding: 0px; background-color: #3f3f3f;}
+
+#block-views-taxonomia_destaque-block_1 li.views-row-2 {border-left: #fff solid 1px; padding-left: 7px;}
+
+#block-image-0 h2,
+#block-block-5 h2,
+#block-audio-2 h2,
+#block-views-ultimo_audio-block_1 h2,
+#block-views-taxonomia_destaque-block_1 h2,
+#block-views-taxonomia_destaque-block_1 .views-field-title, 
+#block-gallery_navigation-0 h2,
+#sidebar-left h2,
+#sidebar-right h2 {color: #fff; font-size: 1.30em; font-weight:400; border-top: solid 1px #ccc;}
+
+#block-views-ulltimas_noticias-block_1 h2 { font-size: 1.30em; font-weight:400; border-top: solid 1px #ccc;}
+
+#blocks .block{padding:0;margin:0;}
+#main .title {border: 0px;}
+
+/* Paragraph */
+
+#block-views-ultimo_audio-block_1 p,
+#block-views-taxonomia_destaque-block_1 a p,
+#sidebar-right a p{color: #fff;},
+
+#sidebar-left .view-content,
+#sidebar-right .view-content {padding-left:.1em;}
+
+/* Content */
+#content .node,
+#content .view {background: transparent; margin-bottom:0px; padding: 0px;}
+
+#content .profile{padding:12px;margin-bottom:10px;}
+
+#content .view-frontpage,
+#content .block{padding:10px; margin-bottom:20px;}
+
+#block-views-ulltimas_noticias-block_1 .item-list,
+#content .node {border-bottom: solid 1px #ccc;}
+
+#content .view .block,
+#content .node .block,
+#mission{padding:12px;background:#f6f8f5;font-size:1.166em;margin-bottom:10px;}
+
+#nav a{font-weight:bold;font-size:1.083em;}
+
+
+.messages{padding:12px;background:#f0fdf0;border:1px solid #e0ede0;margin-bottom:10px;}
+.meta{font-size:.83em;padding-bottom:.5em;}
+.content p, 
+.field-content p {padding-left: 8px; }
+#block-views-frontpage_sticky-block_1 p {color: #000}
+
+
+/* Node sticky*/
+#block-views-frontpage_sticky-block_1 {background-color: #fff8d1;} 
+
+/* Removento coisas desnecessarias (ex: h2, ...) */
+
+#block-menu-primary-links h2,
+#block-menu-secondary-links h2 {display:none;} 
+#block-block-8 .img_assist-button,
+#block-block-8 #edit-copy-wrapper {display:none;}
+
+/* Blocos de views */
+
+#content .view-frontpage { background: #fff ;}
+
+.view-content {padding-bottom:0}
+
+#block-views-frontpage_sticky-block_1 .views-row-even,
+.view-frontpage .views-row-even{clear: left;}
+#block-views-frontpage_sticky-block_1 .views-row-odd,
+.view-frontpage .views-row-odd {clear: right;}
+
+.view-frontpage .views-row-last {border-bottom: 0px}
+
+#sidebar-right .views-row-even, 
+#sidebar-right .views-row-odd {border-bottom: solid 1px #555;}
+
+#sidebar-right .views-row-last {border-bottom: 0px}
+
+.views-row-2 h2 {color: #fff}
+
+.imagecache-bandeira {} 
+
+.views-row-even .field-content img,
+.views-row-even .imagecache{float:right; padding: 5px 0px 5px 5px; }
+
+.views-row-odd .field-content img, 
+.views-row-odd img,
+.field-item img { float:left; padding: 5px 5px 5px 0px; }
+
+
+
+/* Forums */
+#forum table{width:95%;}
+
+/* Drop down */
+
+#block-menu-primary-links {float: left;width: 100%; display: table; position: relative; z-index:100;text-align:left;font-size: 0.9em; font-weight: 400; margin-top: 0px;background-color: #da251c; border-top: 1px solid #a00;}
+#block-menu-secondary-links {width: 48%; display: table;  position: relative; z-index:50;text-align:left;font-size: 0.9em;margin-top: 0px;background-color: #da251c;border-top: 1px solid #a00;}
+
+#block-menu-primary-links a {color: #fff; padding: 3px; font-size: 1.2em; font-weight:400; text-decoration: none;}
+#block-menu-secondary-links a {color: #fff; padding: 3px; font-size: 1.2em; font-weight:400; text-decoration: none;}
+	
+#block-menu-primary-links ul ul, 
+#block-menu-secondary-links ul ul {position: absolute;left:4px;padding-top:5px; width:180px;z-index:100;}
+
+#block-menu-primary-links ul li,
+#block-menu-secondary-links ul li {float:left;position:relative;padding: 5px;background-color:#da251c;}
+
+#block-menu-primary-links ul li:hover,
+#block-menu-secondary-links ul li:hover {visibility:visible;background-color: #ff4800}
+
+#block-menu-primary-links ul li:hover ul,
+#block-menu-secondary-links ul li:hover ul {visibility:visible;background-color: #da251c;}
+
+#block-menu-primary-links ul ul,
+#block-menu-secondary-links ul ul {visibility: hidden;}
+
+#block-menu-primary-links ul li ul li,
+#block-menu-secondary-links ul li ul li {padding: 3px;padding-left: 5px;border-bottom: 1px solid #a00;width: 170px;z-index:100}
+
+#block-menu-secondary-links ul li ul li a {color: #fff;}
+
+/* Front page override */
+.front #content {padding: 0px;}
+
+#block-views-frontpage_sticky-block_1 a,
+.view-frontpage a {font-size:1.5em;line-height:1.333em;font-weight:bold;}
+
+
+#block-views-frontpage_sticky-block_1 h3,
+.view-frontpage  .view-content h3 { border-top: solid 1px #ccc}
+
+#block-views-frontpage_sticky-block_1 h3,
+div.view-frontpage h3,
+#block-views-taxonomia_destaque-block_1 h3,
+div#block-views-ulltimas_noticias-block_1 h3,
+.date #block-views-frontpage_sticky-block_1 p,  
+#block-views-frontpage_sticky-block_1 p .date,  
+p .date,
+p.date,
+.date {padding: 0px; font-weight: normal;font-size: .9em; text-align: left; color: #777; }
+
+/* com clear both da pau, sem fica dificil*/
+.clear-block {}
+.image-clear {display: block; clear:left}
+/* Fundo do image assist */
+
+span.inline-left { display: block; float: left; margin-top: 1px; margin-right: 1px; margin-bottom: 1px; margin-left: 0px; }
+
+div #book-navigation-1 ul {clear:both}
+
+/* Footer */
+#footer{overflow: hidden; height: 100%;padding-top: 20px;font-size:.916em;color:#888;line-height:30px; }
+#footer h2 {border-top: solid 1px #ccc; font-size: .9em; font-weight: normal}
+#footer .content {padding: 0px; }
+#footer .view-content {display:block; background-color: #b91c12;}
+#footer-message {clear: both}
+#footer .item-list {display: table; height: 100%;width: 100%} 
+
+
+/* End of Page Design section
+ *****************************************************
+ */

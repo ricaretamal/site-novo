@@ -1,0 +1,5 @@
+; $Id$
+name = Navegação estruturada 
+core = 6.x
+description = Para as navegações de jornal / revista.
+dependencies[] = taxonomy
