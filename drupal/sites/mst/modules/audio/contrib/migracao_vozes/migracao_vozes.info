@@ -1,6 +1,0 @@
-; $Id$
-name = Migracao vozes da terra
-description = Modulo somente para fazer a migração do vozes da terra do mst antigo para esse. Deve ser desligado depois disso.
-package = Audio
-core = 6.x
-dependencies[] = audio

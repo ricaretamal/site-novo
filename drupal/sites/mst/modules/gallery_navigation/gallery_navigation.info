@@ -1,5 +1,0 @@
-; $Id$
-name = Gallery navigation
-core = 6.x
-description = Navigation for image gallery
-dependencies[] = image
