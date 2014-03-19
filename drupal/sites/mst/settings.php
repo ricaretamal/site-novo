@@ -88,7 +88,21 @@
  *   $db_url = 'pgsql://username:password@localhost/databasename';
  */
 //$db_url = 'mysql://mst2:d#s3j)sdAt5rR$@localhost/mst2';
-$db_url = 'mysql://root@localhost/mst2';
+
+//configuration to appfog
+
+$j = getenv("VCAP_SERVICES");
+if(isset($j)){
+  $obj = json_decode($j,true);
+  $host = ($obj["mysql-5.1"][0]["credentials"]["host"]);
+  $port =  ($obj["mysql-5.1"][0]["credentials"]["port"]);
+  $user = ($obj["mysql-5.1"][0]["credentials"]["username"]);
+  $pass = ($obj["mysql-5.1"][0]["credentials"]["password"]);
+
+  $db_url = 'mysql://'.$user.':'.$pass.'@'.$host.'/mst2';
+}
+
+$db_url = 'mysql://root:root@localhost/mst2';
 $db_prefix = '';
 
 /**
