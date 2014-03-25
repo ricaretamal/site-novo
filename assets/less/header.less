@@ -3,7 +3,8 @@ body > header {
   text-align: center;
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
-  padding-top: 10px; 
+  padding-top: 10px;
+  display: block;
 
   &:after {
     content: "";
@@ -17,27 +18,40 @@ body > header {
   }
 
   figure {
+    display: inline;
+    width: 15%;
+    margin-top: 0px;
+    position: absolute;
+    
     img {
       height: 150px;
     }
   }
 
-  h1 {
-    padding: 0;
-    margin: 0;
-    font-size: 6em;
-    font-weight: bold;
-    text-shadow: 3px 3px black;
-  }
+  section {
+    display: inline-block;
+    width: 70%;
+    padding: 0px;
+    
+    h1 {
+      display: block;
+      padding: 0;
+      margin: 0;
+      font-size: 6em;
+      font-weight: bold;
+      text-shadow: 3px 3px black;
+    }
 
-  p {
-    font-size: 2em;
-    text-shadow: 3px 3px black;
-    margin-bottom: 0;
+    p {
+      display: block;
+      font-size: 2em;
+      text-shadow: 3px 3px black;
+      margin-bottom: 0;
+    }
   }
 
   @media(min-width: @screen-md) {
-    height: 400px;
+    height: 260px;
     padding-top: 70px; 
   }
  }
