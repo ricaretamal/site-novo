@@ -5774,7 +5774,6 @@ button.close {
 }
 body > header {
   position: relative;
-  text-align: center;
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
   padding-top: 10px;
@@ -5792,19 +5791,15 @@ body > header:after {
 }
 body > header figure {
   display: inline;
-  width: 15%;
   margin-top: 0px;
-  position: absolute;
+  margin-right: 20px;
+  margin-left: 50px;
+  float: left;
 }
 body > header figure img {
   height: 150px;
 }
-body > header section {
-  display: inline-block;
-  width: 70%;
-  padding: 0px;
-}
-body > header section h1 {
+body > header h1 {
   display: block;
   padding: 0;
   margin: 0;
@@ -5812,7 +5807,7 @@ body > header section h1 {
   font-weight: bold;
   text-shadow: 3px 3px black;
 }
-body > header section p {
+body > header p {
   display: block;
   font-size: 2em;
   text-shadow: 3px 3px black;
@@ -5822,6 +5817,9 @@ body > header section p {
   body > header {
     height: 260px;
     padding-top: 70px;
+  }
+  body > header figure {
+    margin-left: 15%;
   }
 }
 body > nav {
